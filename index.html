@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Template 5 - Horizantal Slides</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link href="fonts/fonts.css" rel="stylesheet">
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/cover/">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/>
+  <link rel="stylesheet" href="style.css"/>
+  
+  <link rel="preload" href="fonts/TanBold.woff2" as="font" crossorigin>
+    <style>
+    /* Ensure full-screen coverage */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden; /* Prevent scrolling */
+      background-repeat: no-repeat;
+      background-size: cover; /* Adjust background size to cover the viewport */
+      background-position: center center; /* Center the background image */
+      color: white; /* Set text color to white */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a transparent shadow */
+      background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity and color as needed */
+      position: relative; /* Add relative positioning to cover the entire viewport */
+    }
+    
+    /* Style for individual slides */
+    .slider {
+      width: 100%;
+      height: 100%;
+      max-width: 800px;
+      margin: auto; /* Center horizontally */
+      position: auto; /* Add relative positioning to contain the overlay */
+      display: flex;
+      flex-direction: column; /* Ensure the slider stretches to full height */
+      justify-content: space-between; /* Push content to the top and bottom */
+      border: 4px solid #fff; /* Add a white border with 4px width */
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Add a white shadow for a 3D effect */
+      overflow: hidden; /* Prevent scrolling */
+    }
+    
+    /* Style for individual slides */
+    .slide {
+      height: 100vh; /* 100% of viewport height */
+      display: flex;
+      flex-direction: column; /* Stretch slide content vertically */
+      justify-content: flex-end; /* Push content to the bottom */
+      font-size: 2em;
+      color: white;
+      text-align: center;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      position: relative;
+      margin: 0; /* Remove margin to cover the whole viewport */
+      padding: 0; /* Remove padding to cover the whole viewport */
+      border: 1px solid #fff; /* Add a border to each slide */
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Add a shadow to the border */
+      overflow: hidden; /* Prevent scrolling */
+      transform: translate3d(0,0,0); /* triggers GPU acceleration */
+      backface-visibility: hidden;
+      perspective: 1000px;
+      will-change: transform, opacity;
+    }
+    
+    /* Background color overlay */
+    .slide-overlay {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;     
+      background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity and color as needed */
+      z-index: 1; /* Ensure the overlay is above the background image */
+      overflow: hidden; /* Prevent scrolling */
+    }
+    
+    /* Styling for YORO class */
+    .YORO {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a transparent shadow */
+    }
+    
+    .progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 5px; /* Adjust the height of the progress bar */
+      background-color: DarkRed; /* Set the color of the progress bar */
+      transition: width 0.3s ease-in-out;
+    }
+    
+    .unlock-button {
+      background-color: transparent;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 1); /* Add a transparent shadow */
+      border: 0px solid white;
+      padding: 10px 20px;
+      font-size: 30px;
+      font-color: white;
+      cursor: pointer;
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      border-radius: 50%; /* Makes the element circular */
+    }
+    
+    .pause-button {
+      background-color: transparent;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      border: 0px solid white;
+      padding: 10px 20px;
+      font-size: 10px;
+      cursor: pointer;
+      position: absolute; /* Use fixed position */
+      bottom: 13%; /* Adjust the distance from the bottom as needed */
+      left: 0; /* Position at the left edge */
+      z-index: 2;
+      border-radius: 50%;
+      transform: rotate(25deg);
+      margin-left: 7px;
+      z-index: 3;
+      color: white;
+      text-align: center;
+    }
+
+        .countdown-unit {
+            display: inline-block;
+            margin: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a transparent shadow */
+            text-align: center;
+            margin-top: 50px;
+            z-index: 2;
+            font-family: 'Italiano';
+            font-size: clamp(28px, 5vw, 10px);
+
+        }
+    
+    .image-fade4 {
+      position: relative;
+      animation: fade 4s infinite;
+      will-change: opacity;
+    }
+    
+    @keyframes fade {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+    }
+    
+    .image-fade2 {
+      position: relative;
+      animation: fade 2s infinite;
+      will-change: opacity;
+      
+    }
+    
+    @keyframes fade2 {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+    }
+    
+    /* CSS */
+    .button-28 {
+      appearance: none;
+      background-color: white;
+      border: 2px solid #1A1A1A;
+      border-radius: 15px;
+      box-sizing: border-box;
+      color: #3B3B3B;
+      cursor: pointer;
+      display: inline-block;
+      font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      font-size: 16px;
+      font-weight: 600;
+      line-height: normal;
+      margin: 0;
+      min-height: 60px;
+      min-width: 0;
+      outline: none;
+      text-align: center;
+      text-decoration: none;
+      transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      width: 100%;
+      will-change: transform;
+        display: inline-flex;    /* Use flexbox */
+  align-items: center;    /* Vertically center */
+  justify-content: center; /* Horizontally center */
+  gap: 8px;               /* Space between text and icon */
+  text-decoration: none;  /* Remove underline */
+      padding: 10%;
+    }
+    
+    .button-28:disabled {
+      pointer-events: none;
+    }
+    
+    .button-28:hover {
+      color: #fff;
+      background-color: #1A1A1A;
+      box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+      transform: translateY(-2px);
+    }
+    
+    .button-28:active {
+      box-shadow: none;
+      transform: translateY(0);
+    }
+    
+    .button-link {
+      text-decoration: none; /* Remove underline or other text decorations */
+      /* Add other button styling as needed */
+      padding: 10px 20px;
+      font-weight:bold;
+      color: black; /* Example text color */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      display: inline-block;
+      transition: background-color 0.3s ease; /* Example transition */
+    }
+    
+    .button-link:hover {
+      background-color: #0056b3; /* Example hover background color */
+      /* Add other hover styles as needed */
+    }
+    
+
+    
+    
+    /* LOADING PAGE SPINNER AND SPINNER BACKGROUND */
+    .lds-grid-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: -webkit-radial-gradient(#222222, #000000);
+      background: radial-gradient(#222222, #000000);
+      z-index: 1000;
+    }
+    
+    .lds-heart {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+      transform: rotate(45deg);
+      transform-origin: 40px 40px;
+    }
+    
+    .lds-heart div {
+      top: 32px;
+      left: 32px;
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      background: #fff;
+      animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    
+    .lds-heart div:after,
+    .lds-heart div:before {
+      content: " ";
+      position: absolute;
+      display: block;
+      width: 32px;
+      height: 32px;
+      background: #fff;
+    }
+    
+    .lds-heart div:before {
+      left: -24px;
+      border-radius: 50% 0 0 50%;
+    }
+    
+    .lds-heart div:after {
+      top: -24px;
+      border-radius: 50% 50% 0 0;
+    }
+    
+    @keyframes lds-heart {
+      0% {
+        transform: scale(0.95);
+      }
+      5% {
+        transform: scale(1.1);
+      }
+      39% {
+        transform: scale(0.85);
+      }
+      45% {
+        transform: scale(1);
+      }
+      60% {
+        transform: scale(0.95);
+      }
+      100% {
+        transform: scale(0.9);
+      }
+    }
+         h1, h2, h3, p {
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-size: clamp(24px, 5vw, 40px);
+    }
+    h2 {
+      font-size: clamp(20px, 4vw, 32px);
+    }
+    h3 {
+      font-size: clamp(18px, 3.5vw, 28px);
+    }
+    p {
+      font-size: clamp(14px, 3vw, 22px);
+    }
+    .button-28 {
+      font-size: clamp(16px, 4vw, 22px);
+    }
+    label, input, select, button {
+      font-size: clamp(14px, 3.5vw, 20px);
+    }
+
+    /* Ensure proper spacing below text */
+    .YORO + .YORO {
+      margin-top: 1rem;
+    }
+
+    /* Adjust map button for visibility */
+    .button-28 svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Avoid overlap with image-fade2 */
+    .image-fade2 {
+      z-index: 3; 
+      margin: 5px auto; 
+      position: absolute; 
+      bottom: 16%; 
+      text-align: center;
+      left: 0; 
+      right: 0;
+    }
+
+    /* Prevent layout shifts */
+        .slide {
+            justify-content: flex-start;
+            padding: 5vh 5vw;
+            text-align: center;
+        }
+        #video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            filter: brightness(0.7);
+            object-fit: cover;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 0;
+        }
+
+
+  </style>
+</head>
+<body>
+
+    <!--
+        
+        
+        SPINNER LOADING SCREEN 
+    
+        
+        <div id="SPIN">
+        <div class="lds-grid-container">
+            <div class="lds-heart"><div></div></div>
+        </div>
+        </div>
+        
+        -->
+
+    <!--- Video Background-->
+    <div class="video-overlay" style="z-index: 1;"></div>
+    <video id="video-background" autoplay muted loop playsinline>
+        <source src="couple.mp4" type="video/mp4">
+    </video>
+
+    <!--Song To Play -->
+    <audio id="bgmusic" autoplay loop>
+        <source src="MusicMp3/music_travel_love_the_only_one_lyrics_video_mp3_66555.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- START SLIDER AND SLIDES -->
+    <div class="slider">
+        <!--START 1st SLIDE -->
+        <div class="slide" ">
+            <div class="slide-overlay"></div> <!-- Move the overlay inside the slide -->
+           
+            <div class="YORO">
+                <div style="z-index: 999; font-family: 'Pari'; font-size: clamp(28px, 5vw, 10px); margin-top: 50px; max-width: 90%; font-weight: bold;">We Are Getting Married!</div>
+            </div>
+            <div class="YORO" style="z-index: 3;">
+                <div id="countdown" style="z-index: 2; ">
+                    <div id="days" class="countdown-unit"></div>
+                    <div id="hours" class="countdown-unit"></div>
+                    <div id="minutes" class="countdown-unit"></div>
+                    <div id="seconds" class="countdown-unit"></div>
+                </div>
+            </div>
+            <br />
+            <div class="YORO">
+                <div style="z-index: 999; margin-top: 30px; font-family: 'Italiano'; font-size: clamp(28px, 5vw, 60px);">Ali <br /> & <br /> Sarah</div>
+            </div>
+            <br /><br />
+            <div class="YORO" style="z-index: 3; bottom: 13%;">
+                <div class="YORO" id="playButtonContainer" style="z-index: 3; bottom: 13%;">
+                    <div class="elegant-start-button" onclick="unlockSlides()">
+                        <span class="button-text">Tap to Start</span>
+                        <div class="blink-arrow" style="font-size: clamp(28px, 5vw, 10px);">→</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="YORO" style="z-index: 3; bottom: 13%;">
+                <button id="play1" class="pause-button" style="z-index: 2;">
+                    <img id="musicImage" style="width: 20px; height: 20px;" src="img/music-stop.png">
+                </button>
+            </div>
+        </div>
+            <!--END 1st SLIDE -->
+            <!--START 2nd SLIDE -->
+        <div class="slide" ">
+            <div class="slide-overlay"></div> <!-- Move the overlay inside the slide -->
+
+            <div class="YORO" style="z-index: 3;">
+                <h2 style="font-family: 'Pari'; font-size: clamp(28px, 5vw, 10px); z-index: 3; margin: 1; max-width: 80%;">Join us as we celebrate our love and begin a<br class="pc-only" /> new chapter in our lives.</h2>
+            </div>
+            <br />
+            <br />
+            <br />
+            <div class="YORO" style="z-index: 3;">
+                <p style="z-index: 3; margin: 0; font-size: clamp(28px, 5vw, 30px); font-family: 'mfw'">
+                    Date: 02/12/2025<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calendar2-heart-fill" viewBox="0 0 16 16">
+                        <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5Zm-2 4v-1c0-.276.244-.5.545-.5h10.91c.3 0 .545.224.545.5v1c0 .276-.244.5-.546.5H2.545C2.245 5 2 4.776 2 4.5Zm6 3.493c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z" />
+                    </svg>
+                </p>
+                <br />
+            </div>
+
+            <br />
+            <div class="YORO" style="z-index: 3;">
+                <p style="z-index: 3; margin: 0; font-size: clamp(28px, 5vw, 30px); font-family: 'mfw'">
+                    Time: 8:00 PM<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                    </svg>
+                </p>
+                <br />
+            </div>
+
+            <br />
+
+
+
+            <br />
+
+
+            <div class="YORO" style="z-index: 3;">
+                <a class="elegant-map-button" href="https://goo.gl/maps/CggkAtbF8TGEhwKLA" role="button" style="z-index: 3; font-size: clamp(28px, 5vw, 30px);">
+                    <span class="button-content">
+                        <svg class="map-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16">
+                            <path d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98l4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z" />
+                        </svg>
+                        <span>View Location Map</span>
+                    </span>
+                </a>
+            </div>
+
+
+
+            <div class="YORO image-fade2">
+                <p style="font-size: clamp(28px, 5vw, 40px);">→</p>
+            </div>
+            <div class="YORO" style="z-index: 3; bottom: 13%;">
+                <button id="play1" class="pause-button" style="z-index: 2;">
+                    <img id="musicImage" style="width: 20px; height: 20px;" src="img/music-stop.png">
+                </button>
+            </div>
+        </div>
+            <!--END 2nd SLIDE -->
+            <!--START 3TH SLIDE -->
+        <div class="slide">
+            <div class="slide-overlay"></div> <!-- Move the overlay inside the slide -->
+
+            <div class="YORO" style="z-index: 3;">
+                <h1 style="font-family: 'Italiano'; font-size: clamp(28px, 5vw, 30px); z-index: 3; margin: 1; max-width: 80%;">Your presence would mean the world to us.</h1>
+            </div>
+            <div class="YORO" style="z-index: 3;">
+                <div class="wedding-form-container" style="z-index: 3;">
+                    <div class="story_slide rsvp isnp_enabled">
+                        <div class="story_slide_wrapper">
+                            <div class="slide-content">
+                                <div class="form-wrapper">
+                                    <form id="rsvp-event" class="wedding-rsvp-form" name="rsvp_form">
+                                        <input type="hidden" id="event_uuid" name="event_uuid" value="94409dbf-59f2-468b-8e42-2f38c9489b2c">
+
+                                        <div class="wedding-input-group">
+                                            <label for="full_name" class="wedding-input-label">Full Name</label>
+                                            <input placeholder="Full Name" id="full_name" type="text"
+                                                   class="wedding-input" name="full_name" required>
+                                        </div>
+
+                                        <div class="wedding-input-group">
+                                            <label class="wedding-input-label">Are You Attending?</label>
+                                            <select id="guests" name="guests" class="wedding-input wedding-select">
+                                                <option value="">- Select -</option>
+                                                <option value="attending">Yes Attending</option>
+                                                <option value="not_attending">Not Attending</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="wedding-input-group">
+                                            <label for="phone" class="wedding-input-label">Phone Number</label>
+                                            <input placeholder="Phone Number" id="phone" type="tel"
+                                                   class="wedding-input" name="phone" required>
+                                        </div>
+
+                                        <div class="wedding-input-group">
+                                            <button type="button" id="send-email-button"
+                                                    class="wedding-submit-btn">
+                                                Reserve
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="YORO" style="z-index: 3; position: absolute; bottom: 10%; left: 0; right: 0; text-align: center;">
+                <h5 style="font-size: clamp(28px, 5vw, 30px); ">
+                    Crafted By <a href="https://event-crafts.com/" style="font-family: 'RubIso'; font-size: clamp(28px, 5vw, 30px); color: white;">EventCrafts</a>
+                </h5>
+            </div>
+
+
+            <div class="YORO" style="z-index: 3; bottom: 13%;">
+                <button id="play1" class="pause-button" style="z-index: 2;">
+                    <img id="musicImage" style="width: 20px; height: 20px;" src="img/music-stop.png">
+                </button>
+            </div>
+        </div>
+
+            <!--END 4TH SLIDE -->
+
+        </div>
+    <!-- END SLIDER AND SLIDES -->
+
+    <div class="progress-bar"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="rsvp-handler.js"></script>
+    <script>
+        var isLocked = true; // Initially, slides are locked
+        const bgmusic = document.getElementById('bgmusic');
+
+        function unlockSlides() {
+            isLocked = false;
+            bgmusic.play(); // Start playing the music
+            $(".slider").slick('slickSetOption', 'draggable', true);
+            $(".slider").slick('slickSetOption', 'swipe', true);
+            $(".slider").slick('slickGoTo', 1);
+            $(".elegant-start-button").hide();
+
+            var container = document.getElementById('playButtonContainer');
+            container.innerHTML = `
+        <div class="YORO image-fade2">
+            <p style="font-size: clamp(28px, 5vw, 40px);">→</p>
+        </div>
+    `;
+        }
+
+        $(document).ready(function () {
+            // Set initial dimensions
+            const $slider = $('.slider');
+            const $window = $(window);
+
+            function setSliderDimensions() {
+                $slider.css({
+                    'width': $window.width(),
+                    'height': $window.height()
+                });
+                $('.slide').css('height', $window.height());
+            }
+
+            // Initialize dimensions
+            setSliderDimensions();
+            $(window).on('resize', setSliderDimensions);
+
+            // Initialize slick with proper configuration
+            $slider.slick({
+                vertical: false,
+                verticalSwiping: false,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: false,
+                arrows: false,
+                swipe: false,
+                draggable: false,
+                accessibility: false,
+                touchThreshold: 15,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            adaptiveHeight: false
+                        }
+                    }
+                ]
+            });
+
+            // Refresh slider after initialization
+            $slider.slick('refresh');
+
+            // Add touch handler with lock check
+            let touchStartX = null;
+            let touchEndX = null;
+            const minSwipeDistance = 50;
+
+            $slider.on('touchstart', function (e) {
+                if (isLocked) return;
+                const touch = e.originalEvent.touches[0];
+                touchStartX = touch.clientX;
+                touchEndY = null;
+            });
+
+            $slider.on('touchmove', function (e) {
+                if (isLocked) return;
+                if (touchStartX !== null) {
+                    const touch = e.originalEvent.touches[0];
+                    touchEndX = touch.clientX;
+                }
+            });
+
+            $slider.on('touchend', function () {
+                if (isLocked) return;
+                if (touchStartX !== null && touchEndX !== null) {
+                    const swipeDistance = touchEndX - touchStartX;
+                    if (Math.abs(swipeDistance) > minSwipeDistance) {
+                        if (swipeDistance > 0) {
+                            $slider.slick('slickPrev');
+                        } else {
+                            $slider.slick('slickNext');
+                        }
+                    }
+                    touchStartX = null;
+                    touchEndX = null;
+                }
+            });
+        });
+    </script>
+
+    <!-- Script for the progress bar -->
+    <script>
+        $(document).ready(function () {
+            var slider = $('.slider');
+            var progress = $('.progress-bar');
+
+            // Update progress bar on slide change
+            slider.on('afterChange', function (event, slick, currentSlide, nextSlide) {
+                var slideCount = slick.slideCount;
+                var progressWidth = (currentSlide / (slideCount - 1)) * 100;
+                progress.css('width', progressWidth + '%');
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        (function () {
+            // Configuration
+            const WEDDING_DATE = new Date("September 30, 2025 00:00:00").getTime();
+            const COUNTDOWN_ELEMENTS = {
+                days: document.getElementById("days"),
+                hours: document.getElementById("hours"),
+                minutes: document.getElementById("minutes"),
+                seconds: document.getElementById("seconds")
+            };
+
+            // State tracking
+            let lastValues = { days: -1, hours: -1, minutes: -1, seconds: -1 };
+            let animationFrameId = null;
+            let isActive = true;
+
+            // Calculate time values (fixed syntax)
+            const calculateTime = (distance) => ({
+                days: Math.max(0, Math.floor(distance / 86400000)),
+                hours: Math.max(0, Math.floor((distance % 86400000) / 3600000)),
+                minutes: Math.max(0, Math.floor((distance % 3600000) / 60000)),
+                seconds: Math.max(0, Math.floor((distance % 60000) / 1000))
+            });
+
+            // DOM update handler (preserve original formatting)
+            const updateDisplay = (element, value, label) => {
+                if (lastValues[element.id] !== value) {
+                    element.innerHTML = `<div>&nbsp;&nbsp;${value}&nbsp;&nbsp;&nbsp;</div><div>${label}</div>`;
+                    lastValues[element.id] = value;
+                }
+            };
+
+            // Main update loop
+            const updateTimer = () => {
+                if (!isActive) return;
+
+                const now = Date.now();
+                const distance = WEDDING_DATE - now;
+
+                if (distance <= 0) {
+                    handleExpired();
+                    return;
+                }
+
+                const time = calculateTime(distance);
+
+                updateDisplay(COUNTDOWN_ELEMENTS.days, time.days, 'Days');
+                updateDisplay(COUNTDOWN_ELEMENTS.hours, time.hours, 'Hrs');
+                updateDisplay(COUNTDOWN_ELEMENTS.minutes, time.minutes, 'Min');
+                updateDisplay(COUNTDOWN_ELEMENTS.seconds, time.seconds, 'Sec');
+
+                // Align with next second boundary
+                const delay = 1000 - (now % 1000);
+                setTimeout(() => {
+                    animationFrameId = requestAnimationFrame(updateTimer);
+                }, delay);
+            };
+
+            // Expiration handler
+            const handleExpired = () => {
+                isActive = false;
+                cancelAnimationFrame(animationFrameId);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            };
+
+            // Initialize
+            document.addEventListener('visibilitychange', () => {
+                isActive = !document.hidden;
+                if (isActive) updateTimer();
+            });
+
+            // Start the timer
+            updateTimer();
+        })();
+    </script>
+
+    <script>
+        // Get the background music element
+        const bgmusic = document.getElementById('bgmusic');
+
+        // Add click event listeners to each music button by its ID
+        document.getElementById('play').addEventListener('click', function () {
+            if (bgmusic.paused) {
+                bgmusic.play();
+            } else {
+                bgmusic.pause();
+            }
+        });
+
+        document.getElementById('play1').addEventListener('click', function () {
+            if (bgmusic.paused) {
+                bgmusic.play();
+            } else {
+                bgmusic.pause();
+            }
+        });
+
+        // Function to show the spinner
+        function showSpinner() {
+            document.querySelector('.lds-heart').style.display = 'inline-block';
+        }
+
+        function hideSpinnerContainerAfterDelay() {
+            setTimeout(function () {
+                // Get the spinner container by its ID
+                const spinnerContainer = document.getElementById('SPIN');
+
+                // Hide the spinner container
+                spinnerContainer.style.display = 'none';
+            }, 7000); // 10000 milliseconds = 10 seconds
+        }
+
+        // Call the function to hide the spinner container after the delay
+        hideSpinnerContainerAfterDelay();
+    </script>
+
+</body>
+</html>

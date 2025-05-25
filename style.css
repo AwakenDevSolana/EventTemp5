@@ -1,0 +1,717 @@
+﻿  <style>
+    /* Ensure full-screen coverage */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden; /* Prevent scrolling */
+      background-image: url('img/bg.jpg');
+      background-repeat: no-repeat;
+      background-size: cover; /* Adjust background size to cover the viewport */
+      background-position: center center; /* Center the background image */
+      color: white; /* Set text color to white */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a transparent shadow */
+      background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity and color as needed */
+      position: relative; /* Add relative positioning to cover the entire viewport */
+    }
+    
+    /* Style for individual slides */
+    .slider {
+      width: 100%;
+      height: 100%;
+      max-width: 800px;
+      margin: auto; /* Center horizontally */
+      position: auto; /* Add relative positioning to contain the overlay */
+      display: flex;
+      flex-direction: column; /* Ensure the slider stretches to full height */
+      justify-content: space-between; /* Push content to the top and bottom */
+      border: 4px solid #fff; /* Add a white border with 4px width */
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Add a white shadow for a 3D effect */
+      overflow: hidden; /* Prevent scrolling */
+    }
+    
+    /* Style for individual slides */
+.slide {
+    height: 100vh; /* 100% of viewport height */
+    display: flex;
+    flex-direction: column; /* Stretch slide content vertically */
+    justify-content: flex-end; /* Push content to the bottom */
+    font-size: 2em;
+    color: white;
+    text-align: center;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    margin: 0; /* Remove margin to cover the whole viewport */
+    padding: 0; /* Remove padding to cover the whole viewport */
+    overflow: hidden; /* Prevent scrolling */
+    border: none !important;
+    box-shadow: none !important;
+}
+    
+    /* Background color overlay */
+    .slide-overlay {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;     
+      background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity and color as needed */
+      z-index: 1; /* Ensure the overlay is above the background image */
+      overflow: hidden; /* Prevent scrolling */
+    }
+    
+    /* Styling for YORO class */
+    .YORO {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a transparent shadow */
+    }
+    
+    .progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 5px; /* Adjust the height of the progress bar */
+      background-color: DarkRed; /* Set the color of the progress bar */
+      transition: width 0.3s ease-in-out;
+    }
+    
+    .unlock-button {
+      background-color: transparent;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 1); /* Add a transparent shadow */
+      border: 0px solid white;
+      padding: 10px 20px;
+      font-size: 30px;
+      font-color: white;
+      cursor: pointer;
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      border-radius: 50%; /* Makes the element circular */
+    }
+    
+    .pause-button {
+      background-color: transparent;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      border: 0px solid white;
+      padding: 10px 20px;
+      font-size: 10px;
+      cursor: pointer;
+      position: absolute; /* Use fixed position */
+      bottom: 13%; /* Adjust the distance from the bottom as needed */
+      left: 0; /* Position at the left edge */
+      z-index: 2;
+      border-radius: 50%;
+      transform: rotate(25deg);
+      margin-left: 7px;
+      z-index: 3;
+      color: white;
+      text-align: center;
+    }
+
+.countdown-unit {
+    display: inline-block;
+    margin: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a transparent shadow */
+    text-align: center;
+    margin-top: 50px;
+    font-family: 'TanReg' !important;
+}
+    
+    .image-fade4 {
+      position: relative;
+      animation: fade 4s infinite;
+    }
+    
+    @keyframes fade {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+    }
+    
+    .image-fade2 {
+      position: relative;
+      animation: fade 2s infinite;
+    }
+    
+    @keyframes fade2 {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+    }
+    
+    /* CSS */
+    .button-28 {
+      appearance: none;
+      background-color: white;
+      border: 2px solid #1A1A1A;
+      border-radius: 15px;
+      box-sizing: border-box;
+      color: #3B3B3B;
+      cursor: pointer;
+      display: inline-block;
+      font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      font-size: 16px;
+      font-weight: 600;
+      line-height: normal;
+      margin: 0;
+      min-height: 60px;
+      min-width: 0;
+      outline: none;
+      text-align: center;
+      text-decoration: none;
+      transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      width: 100%;
+      will-change: transform;
+        display: inline-flex;    /* Use flexbox */
+  align-items: center;    /* Vertically center */
+  justify-content: center; /* Horizontally center */
+  gap: 8px;               /* Space between text and icon */
+  text-decoration: none;  /* Remove underline */
+      padding: 10%;
+    }
+    
+    .button-28:disabled {
+      pointer-events: none;
+    }
+    
+    .button-28:hover {
+      color: #fff;
+      background-color: #1A1A1A;
+      box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+      transform: translateY(-2px);
+    }
+    
+    .button-28:active {
+      box-shadow: none;
+      transform: translateY(0);
+    }
+    
+    .button-link {
+      text-decoration: none; /* Remove underline or other text decorations */
+      /* Add other button styling as needed */
+      padding: 10px 20px;
+      font-weight:bold;
+      color: black; /* Example text color */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      display: inline-block;
+      transition: background-color 0.3s ease; /* Example transition */
+    }
+    
+    .button-link:hover {
+      background-color: #0056b3; /* Example hover background color */
+      /* Add other hover styles as needed */
+    }
+    
+    .rotated-image {
+      transform: rotate(-20deg); /* Adjust the degree of rotation as needed */
+      width: 30vw; /* Set the width */
+      height: 30vw; /* Set the height */
+    }
+    
+    /* LOADING PAGE SPINNER AND SPINNER BACKGROUND */
+    .lds-grid-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: -webkit-radial-gradient(#222222, #000000);
+      background: radial-gradient(#222222, #000000);
+      z-index: 1000;
+    }
+    
+    .lds-heart {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+      transform: rotate(45deg);
+      transform-origin: 40px 40px;
+    }
+    
+    .lds-heart div {
+      top: 32px;
+      left: 32px;
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      background: #fff;
+      animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    
+    .lds-heart div:after,
+    .lds-heart div:before {
+      content: " ";
+      position: absolute;
+      display: block;
+      width: 32px;
+      height: 32px;
+      background: #fff;
+    }
+    
+    .lds-heart div:before {
+      left: -24px;
+      border-radius: 50% 0 0 50%;
+    }
+    
+    .lds-heart div:after {
+      top: -24px;
+      border-radius: 50% 50% 0 0;
+    }
+    
+    @keyframes lds-heart {
+      0% {
+        transform: scale(0.95);
+      }
+      5% {
+        transform: scale(1.1);
+      }
+      39% {
+        transform: scale(0.85);
+      }
+      45% {
+        transform: scale(1);
+      }
+      60% {
+        transform: scale(0.95);
+      }
+      100% {
+        transform: scale(0.9);
+      }
+    }
+@media screen and (max-width: 430px) {
+  .unlock-button {
+    top: 65vh;
+    font-size: 6vw;
+  }
+
+  .rotated-image {
+    max-width: 35vw;
+    bottom: 15vh;
+  }
+
+  .pause-button {
+    bottom: 10vh;
+    font-size: 2.5vw;
+  }
+
+  .YORO h1, .YORO h2 {
+    font-size: 5vw;
+  }
+
+  .countdown-unit {
+    font-size: 4vw;
+  }
+}
+/* Form Styling */
+/* Modern Elegance Styling */
+:root {
+    --gold: #C8A785;
+    --cream: #FFFCF5;
+    --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.wedding-form-container {
+    max-width: 480px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+    .wedding-form-container::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, rgba(200, 167, 133, 0.1) 0%, rgba(200, 167, 133, 0.05) 100%);
+        z-index: -1;
+    }
+
+.wedding-rsvp-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.wedding-input-group {
+    position: relative;
+}
+
+.wedding-input {
+    width: 100%;
+    padding: 1.2rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    font-family: 'Playfair Display', serif;
+    transition: var(--transition);
+    caret-color: var(--gold);
+}
+
+    .wedding-input::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 300;
+    }
+
+    .wedding-input:focus {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: var(--gold);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(200, 167, 133, 0.15);
+    }
+
+.wedding-select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23C8A785"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 14px;
+}
+
+.wedding-submit-btn {
+    background: linear-gradient(135deg, #C8A785 0%, #B08F69 100%);
+    color: #fff;
+    padding: 1.2rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    text-transform: none;
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+    .wedding-submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(200, 167, 133, 0.25);
+    }
+
+    .wedding-submit-btn::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.1) 50%, transparent 75%);
+        transform: rotate(45deg);
+        animation: shine 3s infinite;
+    }
+/* Custom Dropdown Styling */
+.wedding-select {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 8px !important;
+}
+
+    /* Dropdown Options */
+    .wedding-select option {
+        background: rgba(0, 0, 0, 0.9);
+        color: #fff;
+        padding: 12px;
+    }
+
+        /* Hover State for Options */
+        .wedding-select option:hover {
+            background: var(--gold) !important;
+            color: #000 !important;
+        }
+
+        /* Selected Option */
+        .wedding-select option:checked {
+            background: var(--gold) !important;
+            color: #000 !important;
+        }
+
+    /* Disabled Default Arrow */
+    .wedding-select::-ms-expand {
+        display: none;
+    }
+
+/* Custom Dropdown Arrow */
+.wedding-select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c8a785'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px;
+}
+@keyframes shine {
+    0% {
+        transform: translateX(-150%) rotate(45deg);
+    }
+
+    100% {
+        transform: translateX(150%) rotate(45deg);
+    }
+}
+
+/* Enhanced Content Cards */
+.content-card-primary {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 2.5rem;
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 2rem auto;
+    max-width: 800px;
+    position: relative;
+}
+
+    .content-card-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 50% 0%, rgba(200, 167, 133, 0.1) 0%, transparent 60%);
+        pointer-events: none;
+    }
+
+/* Modern Floral Divider */
+.floral-divider {
+    height: 2px;
+    background: rgba(255,255,255,0.1);
+    margin: 2rem 0;
+    position: relative;
+}
+
+    .floral-divider::after {
+        content: '✿✿✿';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--gold);
+        font-size: 1.2rem;
+        letter-spacing: 8px;
+        background: inherit;
+        padding: 0 1rem;
+    }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .wedding-form-container {
+        padding: 1.8rem;
+        margin: 1rem;
+        border-radius: 12px;
+    }
+
+    .wedding-input {
+        padding: 1rem;
+    }
+}
+
+/* Animation Enhancements */
+@keyframes slideUp {
+    from {
+        transform: translateY(30px) scale(0.98);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.slide-up-entrance {
+    animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* Form Labels */
+.wedding-input-group label {
+    display: block;
+    margin-bottom: 0.6rem;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+.wedding-input {
+    height: 48px;
+    padding: 0 1.2rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.wedding-select {
+    height: 48px;
+    padding-right: 2.5rem !important; /* Make space for dropdown arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+    /* Add focus state consistency */
+    .wedding-input:focus,
+    .wedding-select:focus {
+        border-width: 2px;
+        padding: 0 1.15rem; /* Adjust padding to maintain size when focused */
+    }
+
+/* Ensure mobile consistency */
+@media (max-width: 768px) {
+    .wedding-input,
+    .wedding-select {
+        height: 44px;
+        font-size: 0.9rem;
+        padding: 0 1rem;
+    }
+
+    .wedding-select {
+        padding-right: 2rem !important;
+    }
+}
+/* Elegant Start Button */
+.elegant-start-button {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 40px;
+    padding: 20px 40px;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+    .elegant-start-button:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+
+/* Blinking Arrow Animation */
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.blink-arrow {
+    animation: blink 1.5s infinite;
+    font-size: 1.8rem;
+    margin-top: 3px;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .elegant-start-button {
+        font-size: 1.2rem;
+        padding: 15px 30px;
+    }
+
+    .blink-arrow {
+        font-size: 1.5rem;
+    }
+}
+.elegant-map-button {
+    background: rgba(200, 167, 133, 0.1);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(200, 167, 133, 0.3);
+    border-radius: 12px;
+    padding: 1rem 2rem;
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+    .elegant-map-button:hover {
+        background: rgba(200, 167, 133, 0.15);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        border-color: rgba(200, 167, 133, 0.5);
+    }
+
+.map-icon {
+    fill: #c8a785;
+    transition: transform 0.3s ease;
+    width: 20px;
+    height: 20px;
+}
+
+.elegant-map-button:hover .map-icon {
+    transform: translateX(3px);
+    fill: #fff;
+}
+
+.button-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+@media (max-width: 768px) {
+    .elegant-map-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .map-icon {
+        width: 18px;
+        height: 18px;
+    }
+}
+  </style>

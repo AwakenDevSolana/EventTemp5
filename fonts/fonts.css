@@ -1,0 +1,50 @@
+/*FONTS */
+
+/* Font 1 */
+@font-face {
+  font-family: 'Herr';
+  src: url('HerrVonMuellerhoff-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* Font 2 */
+@font-face {
+  font-family: 'Italiano';
+  src: url('Italianno-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* Font 3 */
+@font-face {
+  font-family: 'Pari';
+  src: url('Parisienne-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* Font 4 */
+@font-face {
+  font-family: 'TanBold';
+  src: url('Tangerine-Bold.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* Font 5 */
+@font-face {
+  font-family: 'TanReg';
+  src: url('Tangerine-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+/* Font 6 */
+@font-face {
+    font-family: 'mfw';
+    src: url('MfWeddingBells-yqEM.ttf') format('truetype');
+    font-display: swap;
+}
+
+
+/*Font 6 - USED FOR SIGNATURE*/
+@font-face {
+  font-family: 'RubIso';
+  src: url('RubikIso-Regular.ttf') format('truetype');
+  font-display: swap;
+}
